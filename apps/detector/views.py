@@ -7,4 +7,11 @@ dt = Blueprint("detector", __name__, template_folder="templates")
 # dtアプリケーションを使ってエンドポイントを作成する。
 @dt.route("/")
 def index():
-    return render_template("detector/index.html")
+    # UserとUserImageをJoinして画像一覧を取得する
+    user_images = (
+        db.session.query(User, UserImage)
+        .join(UserImage)
+        .filter(User.id == UserImage.user_id)
+        .all()
+    )
+    return render_template("detector/index.html", user_images=user_images)
