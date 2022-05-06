@@ -1,3 +1,6 @@
+from apps.app import db
+from apps.crud.models import User
+from apps.detector.models import UserImage
 from flask import Blueprint, render_template
 
 # template_folderを指定する(staticは指定しない)
